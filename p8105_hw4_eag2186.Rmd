@@ -1,0 +1,40 @@
+---
+title: "Homework 4"
+author: "Lizzy Gibson"
+date: "October 24, 2017"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(tidyverse)
+library(janitor)
+```
+
+## Read and Merge 538 Data
+```{r}
+pols <- read_csv("./fivethirtyeight_datasets/pols-month.csv") %>% 
+  clean_names() %>% 
+  mutate(president = ifelse(prez_gop == 0, "dem", "gop")) %>% 
+  mutate(date = lubridate::floor_date(mon,"month")) %>% 
+  select(-mon) %>% 
+  arrange(date)
+
+gdp <- read_csv("./fivethirtyeight_datasets/GDP.csv", na = ".") %>% 
+  clean_names() %>% 
+  select(date, gdp_value = value) %>% 
+  mutate(date = lubridate::floor_date(date,"month"))
+
+five38 <- inner_join(pols, gdp, by = "date") %>% 
+  select(date, everything())
+```
+
+### View Data
+```{r view}
+five38
+```
+
