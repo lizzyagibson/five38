@@ -38,3 +38,13 @@ five38 <- inner_join(pols, gdp, by = "date") %>%
 five38
 ```
 
+## GDP Value over Time
+
+```{r_five38_plot}
+
+five38 %>% 
+  ggplot(aes(x = date, y = gdp_value, color = president)) + geom_point() +   
+  geom_smooth(alpha = 0.1) + labs(x = "Date", y = "GDP Value", title = "GDP Value Over Time for Each Presidential Party")
+
+```
+
