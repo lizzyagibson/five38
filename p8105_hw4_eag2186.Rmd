@@ -41,10 +41,11 @@ five38
 ## GDP Value over Time
 
 ```{r_five38_plot}
-
 five38 %>% 
   ggplot(aes(x = date, y = gdp_value, color = president)) + geom_point() +   
-  geom_smooth(alpha = 0.1) + labs(x = "Date", y = "GDP Value", title = "GDP Value Over Time for Each Presidential Party")
-
+  geom_smooth(alpha = 0.1) + labs(x = "Date", y = "GDP Value", title = "Figure 2: GDP Value Over Time for Each Presidential Party")
 ```
+
+From Figure 2 above, it can be seen that whether the president was a democrat or republican, the GDP increased from the 1960's to the 1980's (where it peaked) and then declined past the 2000's. Though, on average, the GDP was higher with republican presidents than democratic ones until the late 90's. 
+
 
