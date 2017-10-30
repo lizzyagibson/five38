@@ -42,10 +42,14 @@ five38
 
 ```{r_five38_plot}
 five38 %>% 
-  ggplot(aes(x = date, y = gdp_value, color = president)) + geom_point() +   
-  geom_smooth(alpha = 0.1) + labs(x = "Date", y = "GDP Value", title = "Figure 2: GDP Value Over Time for Each Presidential Party")
+   mutate(president = forcats::fct_recode(president,
+                                         "GOP" = "gop",
+                                         "Dem" = "dem")) %>%
+  ggplot(aes(x = date, y = gdp_value, color = president)) + 
+  geom_col(aes(fill = president)) +
+  labs(x = "Date", y = "GDP Value", title = "Figure 2: GDP Value Over Time for Each Presidential Party")
 ```
 
-From Figure 2 above, it can be seen that whether the president was a democrat or republican, the GDP increased from the 1960's to the 1980's (where it peaked) and then declined past the 2000's. Though, on average, the GDP was higher with republican presidents than democratic ones until the late 90's. 
+From Figure 2 above, it can be seen that whether the president was a democrat or republican, the GDP was constantly fluctuating. The highest GDP was attained in the early 1950's when a democrat, President Truman, was in office. The next highest GDP was attained when yet another democrat, President Carter, was in office in the late 1970's. The largest fluctuation occurred in the late 1950's, during (republican) President Eisenhower's term. There appears to be an overall decrease in GDP from the 1980's to 2014, where it reached an all-time low with (democratic) President Obama's term in office. The nation's financial stability, which relates heavily to politics and current events such as wars, is constantly changing even within a single president's term.  
 
 
